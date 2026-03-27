@@ -402,6 +402,18 @@ h1, h2, h3, h4, h5, h6, figure {
     height: inherit;
   }
 }
+#fh5co-event .display-tc:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+@media screen and (max-width: 768px) {
+  #fh5co-event .display-t,
+  #fh5co-event .display-tc {
+    display: block;
+    height: auto;
+  }
+}
 #fh5co-counter .event-wrap,
 #fh5co-event .event-wrap {
   border: 2px solid rgba(0, 0, 0, 0.5);
@@ -1801,6 +1813,11 @@ form label {
 
 .js .animate-box {
   opacity: 0;
+}
+@media screen and (max-width: 768px) {
+  .js .animate-box {
+    opacity: 1;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

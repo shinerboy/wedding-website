@@ -10,7 +10,7 @@
 
 	    	if ( $('body').hasClass('offcanvas') ) {
 
-    			$('body').removeClass('offcanvas');
+    			$('body').removeClass('overflow offcanvas');
     			$('.js-fh5co-nav-toggle').removeClass('active');
 	    	}
 	    }
@@ -55,7 +55,7 @@
 
 			if ( $('body').hasClass('offcanvas') ) {
 
-    			$('body').removeClass('offcanvas');
+    			$('body').removeClass('overflow offcanvas');
     			$('.js-fh5co-nav-toggle').removeClass('active');
 				
 	    	}
@@ -77,6 +77,23 @@
 			$this.toggleClass('active');
 			event.preventDefault();
 
+		});
+	};
+
+	var sectionNavigation = function() {
+		$('body').on('click', '.menu-1 a[href^="#"], #fh5co-offcanvas a[href^="#"]', function(event){
+			var targetId = $(this).attr('href');
+			var $target = $(targetId);
+
+			$('body').removeClass('overflow offcanvas');
+			$('.js-fh5co-nav-toggle').removeClass('active');
+
+			if ($target.length) {
+				event.preventDefault();
+				$('html, body').stop(true).animate({
+					scrollTop: $target.offset().top
+				}, 450, 'easeInOutExpo');
+			}
 		});
 	};
 
@@ -219,6 +236,7 @@
 		parallax();
 		offcanvasMenu();
 		burgerMenu();
+		sectionNavigation();
 		contentWayPoint();
 		dropdown();
 		testimonialCarousel();
