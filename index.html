@@ -59,8 +59,6 @@
 
 	</head>
 	<body>
-	<div id="fb-root"></div>
-	<script async defer src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v19.0"></script>
 		
 	<div class="fh5co-loader"></div>
 	
@@ -262,14 +260,12 @@
 	<div class="container animate-box">
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1 text-center">
-				<div class="fb-video" data-href="https://www.facebook.com/Ernesto9/videos/10158625824705799/" data-width="560" data-show-text="false" data-allowfullscreen="true">
-					<div class="fb-xfbml-parse-ignore">
-						<a href="https://www.facebook.com/Ernesto9/videos/10158625824705799/">Watch our video on Facebook</a>
+				<div id="video-placeholder" style="position: relative; width: 100%; max-width: 860px; margin: 0 auto; padding-top: 56.25%; background: url('images/RS2.jpg') center center / cover no-repeat; border-radius: 8px; cursor: pointer;" role="button" tabindex="0" aria-label="Play video">
+					<div style="position: absolute; inset: 0; background: rgba(0, 0, 0, 0.25); border-radius: 8px;"></div>
+					<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 72px; height: 72px; border-radius: 50%; background: rgba(255, 255, 255, 0.9); display: flex; align-items: center; justify-content: center; color: #111; font-size: 30px;">
+						<i class="icon-video2"></i>
 					</div>
 				</div>
-				<p style="margin-top: 14px;">
-					<a class="btn btn-default btn-sm" href="https://www.facebook.com/579445798/videos/10158625824705799/" target="_blank" rel="noopener noreferrer">Watch Video on Facebook</a>
-				</p>
 			</div>
 		</div>
 	</div>
@@ -304,6 +300,39 @@
 	<script src="js/simplyCountdown.js"></script>
 	<!-- Main -->
 	<script src="js/main.js"></script>
+	<script>
+		(function () {
+			var placeholder = document.getElementById('video-placeholder');
+			if (!placeholder) return;
+
+			var loadVideo = function () {
+				var iframe = document.createElement('iframe');
+				iframe.src = 'https://www.youtube.com/embed/PEXSaFk28KQ?autoplay=1';
+				iframe.title = 'YouTube video player';
+				iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+				iframe.allowFullscreen = true;
+				iframe.style.position = 'absolute';
+				iframe.style.top = '0';
+				iframe.style.left = '0';
+				iframe.style.width = '100%';
+				iframe.style.height = '100%';
+				iframe.style.border = '0';
+				iframe.style.borderRadius = '8px';
+				placeholder.innerHTML = '';
+				placeholder.appendChild(iframe);
+				placeholder.style.cursor = 'default';
+				placeholder.removeAttribute('role');
+			};
+
+			placeholder.addEventListener('click', loadVideo);
+			placeholder.addEventListener('keydown', function (event) {
+				if (event.key === 'Enter' || event.key === ' ') {
+					event.preventDefault();
+					loadVideo();
+				}
+			});
+		}());
+	</script>
 	<center>View Source Code on <a href="https://github.com/shyamjos/wedding-website">GitHub <img src="images/github-logo.png"> </a> </center>
 	</body>
 </html>
