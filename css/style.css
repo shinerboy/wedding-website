@@ -1819,6 +1819,11 @@ form label {
     opacity: 1;
   }
 }
+@media screen and (max-width: 480px) {
+  .hero-fprint {
+    margin-top: -34px !important;
+  }
+}
 
 /*# sourceMappingURL=style.css.map */
 
